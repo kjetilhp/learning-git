@@ -38,6 +38,19 @@ then
         exit 1
 fi
 
+#check that the repo is clean and up to date
+if [ -n "$(git status --porcelain)" ]
+then
+        echo "You have uncommitted changes"
+        exit 1
+fi
+# git fetch
+if [ -n "$(git diff --name-only origin/$CURRENT_BRANCH)" ]
+then
+        echo "You are not up to date with the remote branch"
+        exit 1
+fi
+
 # echo "extension: $EXTENSION"
 # echo "searchpath: $SEARCHPATH"
 # echo "default: $DEFAULT"
@@ -66,8 +79,8 @@ then
         git push origin --delete "feature/$BRANCH"
 else
         echo "Creating branch: "$BRANCH
-        git checkout main
+        git checkout $CURRENT_BRANCH
         git pull
-        git checkout -b "feature/$1" main
+        git checkout -b "feature/$1" $CURRENT_BRANCH
         git push -u origin "feature/$1"
 fi
