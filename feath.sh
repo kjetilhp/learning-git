@@ -37,7 +37,7 @@ set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 # echo "positional args: $@"
 # echo "positional args: $POSITIONAL_ARGS"
 
-if [ "$DELETE" == "YES" ] && [ [ "$@" == "master" ] || [ "$@" == "develop" ] || [ "$@" == "main" ]]
+if [ "$DELETE" == "YES" ] && { [ "$@" = "master" ] || [ "$@" = "develop" ] || [ "$@" = "main" ]; }
 then
         echo "Deleting master/main and develop branches not alloed"
         exit 1
