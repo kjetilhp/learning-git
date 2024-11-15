@@ -56,11 +56,11 @@ if [ "$DELETE" == "YES" ]
 then
         echo "Deleting branch: "$BRANCH
         git branch -d $BRANCH
-        git push origin --delete feature-$BRANCH
+        git push origin --delete "feature/$BRANCH"
 else
         echo "Creating branch: "$BRANCH
         git checkout main
         git pull
-        git checkout -b feature-$1 main
-        git push -u origin feature-$1
+        git checkout -b "feature/$1" main
+        git push -u origin "feature/$1"
 fi
