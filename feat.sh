@@ -32,7 +32,7 @@ done
 set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
 CURRENT_BRANCH=`git rev-parse --abbrev-ref HEAD`
-if {[ "$CURRENT_BRANCH" != "main" ] || [ "$CURRENT_BRANCH" != "master" ];} && [ "$DELETE" != "YES" ]
+if { [ "$CURRENT_BRANCH" != "main" ] && [ "$CURRENT_BRANCH" != "master" ]; } && [ "$DELETE" != "YES" ]
 then
         echo "You must be on the main branch to create a feature branch"
         exit 1
